@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 //import android.os.Bundle;
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,10 +50,36 @@ public class HomePage extends AppCompatActivity {
         list.add(new Person("孙武","25岁  电话:158888997"));
 
         //2.设置Adapter
-        ListView lv_list = (ListView)findViewById(R.id.lv_list);//TODO：对照这里尝试一下教程里的布局
+        final ListView lv_list = (ListView)findViewById(R.id.lv_list);//对照这里尝试一下教程里的布局
         lv_list.setAdapter(new MyAdapter());
 
+        //点击监听
+        /*lv_list.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startChat(v);
+            }
+        });*/
+        lv_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id)
+            {
+                startChat(lv_list);
+            }
+        });
+
     }
+
+    /*启动聊天activity，当点击列表时调用*/
+    public void startChat(View view){
+        Intent intent = new Intent(this, Chat.class);
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
     class MyAdapter extends BaseAdapter{
 
         @Override
