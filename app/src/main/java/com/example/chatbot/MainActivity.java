@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*启动菜单activity，当点击启动按钮时调用*/
     public void startMenu(View view){
-        Intent intent = new Intent(this, Menu.class);
+        Intent intent = new Intent(this, HomePage.class);
         //EditText editText = (EditText) findViewById(R.id.editText);
         //String message = editText.getText().toString();
         //intent.putExtra(EXTRA_MESSAGE, message);
