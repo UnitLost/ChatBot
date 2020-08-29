@@ -14,7 +14,7 @@
             android:value=".HomePage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".HomePage" />
         </activity>
         <activity
             android:name=".HomePage"
