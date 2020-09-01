@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +20,20 @@ public class MyAdapter extends BaseAdapter {
     public MyAdapter(LinkedList<Data> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
+    }
+
+    @Override
+    public int getItemViewType(int position){
+        Data data = (Data)mData.get(position);
+        if(data.isMe()){
+            return 1;
+        }
+        else return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
     }
 
     @Override
@@ -41,24 +54,40 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        if(convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list,parent,false);
+        int t=getItemViewType(position);
+        /*if(convertView == null){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_left,parent,false);
             holder = new ViewHolder();
             holder.img_icon = (ImageView) convertView.findViewById(R.id.img_icon);
             holder.txt_content = (TextView) convertView.findViewById(R.id.txt_content);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
+        }*/
+        if(t==1){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_right,parent,false);
+            holder = new ViewHolder();
+            holder.img_icon = (ImageView) convertView.findViewById(R.id.img_icon);
+            holder.txt_content = (TextView) convertView.findViewById(R.id.txt_content);
+            convertView.setTag(holder);
+        }
+        else{
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_left,parent,false);
+            holder = new ViewHolder();
+            holder.img_icon = (ImageView) convertView.findViewById(R.id.img_icon);
+            holder.txt_content = (TextView) convertView.findViewById(R.id.txt_content);
+            convertView.setTag(holder);
         }
         holder.img_icon.setImageResource(mData.get(position).getImgId());
         holder.txt_content.setText(mData.get(position).getContent());
         return convertView;
     }
 
-    public void add(Data data) {
+    public void add(Data data,int position) {//0_left,1_right
         if (mData == null) {
             mData = new LinkedList<>();
         }
+
         mData.add(data);
         notifyDataSetChanged();
     }

@@ -34,8 +34,15 @@ public class Chat extends AppCompatActivity {
         list_one = (ListView) findViewById(R.id.list_one);
     }
 
-    public void clickUpdate(View v){
+    /*public void clickUpdate(View v){
         mAdapter.add(new Data(R.mipmap.ic_launcher,"新消息"));
+    }*/
+    public void clickUpdateLeft(View v){
+        mAdapter.add(new Data(R.mipmap.ic_launcher,"新消息",0),0);
+    }
+
+    public void clickUpdateRight(View v){
+        mAdapter.add(new Data(R.mipmap.ic_launcher,"新消息",1),1);
     }
 
 }

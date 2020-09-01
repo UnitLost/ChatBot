@@ -9,7 +9,14 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickUpdate"
+        android:onClick="clickUpdateLeft"
+        android:text="更新" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickUpdateRight"
         android:text="更新" />
 
 
