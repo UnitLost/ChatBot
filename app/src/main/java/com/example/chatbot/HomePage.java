@@ -44,10 +44,7 @@ public class HomePage extends AppCompatActivity {
 
         //1.添加要显示的数据
         list  = new ArrayList<Person>();
-        list.add(new Person("张三","18岁  电话:158888666"));
-        list.add(new Person("李四","21岁  电话:158888777"));
-        list.add(new Person("王二","23岁  电话:158888877"));
-        list.add(new Person("孙武","25岁  电话:158888997"));
+        list.add(new Person("bot","bot描述"));
 
         //2.设置Adapter
         final ListView lv_list = (ListView)findViewById(R.id.lv_list);//对照这里尝试一下教程里的布局
