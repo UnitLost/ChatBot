@@ -37,7 +37,7 @@ public class Chat extends AppCompatActivity {
     private TextView txtshow;
     private EditText editsend;
     private Button btnsend;
-    private static final String HOST = "10.0.2.2";
+    private static final String HOST = "39.97.114.142";
     private static final int PORT = 9898;
     private Socket socket = null;
     private BufferedReader in = null;
