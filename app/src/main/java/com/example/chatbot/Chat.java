@@ -2,8 +2,11 @@ package com.example.chatbot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +43,24 @@ public class Chat extends AppCompatActivity {
     private PrintWriter out = null;
     private String content = "";
     private StringBuilder sb = null;
+
+    //定义一个handler对象,用来刷新界面
+    @SuppressLint("HandlerLeak")
+    public Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            //if (msg.what == 0x123) {
+                //System.out.println(content+"sss");
+                //sb.append(content);
+                //txtshow.setText(sb.toString());
+                //System.out.println(sb.toString()+"kkk");
+                //System.out.println(msg.obj.toString()+"sss");
+                //System.out.println(msg.obj);
+                clickUpdateLeft(findViewById(R.id.list_one),msg.obj.toString());//刷新界面，
+            //}
+        }
+
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +104,20 @@ public class Chat extends AppCompatActivity {
                                         if ((content = in.readLine()) != null) {
                                             //content += "\n";
                                             //handler.sendEmptyMessage(0x123);
+                                            System.out.println(content);
                                             //System.out.println(content);
-                                            clickUpdateLeft(findViewById(R.id.list_one),content);
+                                            //clickUpdateLeft(findViewById(R.id.list_one),content);
+                                            //content += "\n";
+                                            //handler.sendEmptyMessage(0x123);
+                                            content.substring(0,content.length());
+
+
+                                            //从全局池中返回一个message实例，避免多次创建message（如new Message）
+                                            Message msg =Message.obtain();
+                                            msg.obj = content;
+                                            //msg.
+                                            System.out.println(msg.obj);
+                                            handler.sendMessage(msg);
                                         }
                                     }
                                 }
@@ -150,7 +183,7 @@ public class Chat extends AppCompatActivity {
 
     //重写run方法,在该方法中输入流的读取
     //@Override
-    /*public void run() {
+    public void run() {
         try {
             while (true) {
                 if (socket.isConnected()) {
@@ -166,7 +199,7 @@ public class Chat extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public void sendMsg(){
         String msg;
