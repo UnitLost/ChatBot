@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.CharArrayReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -53,7 +54,7 @@ public class Chat extends AppCompatActivity {
                 //sb.append(content);
                 //txtshow.setText(sb.toString());
                 //System.out.println(sb.toString()+"kkk");
-                //System.out.println(msg.obj.toString()+"sss");
+                System.out.println(msg.obj.toString()+"sss");
                 //System.out.println(msg.obj);
                 clickUpdateLeft(findViewById(R.id.list_one),msg.obj.toString());//刷新界面，
             //}
@@ -109,14 +110,15 @@ public class Chat extends AppCompatActivity {
                                             //clickUpdateLeft(findViewById(R.id.list_one),content);
                                             //content += "\n";
                                             //handler.sendEmptyMessage(0x123);
-                                            content.substring(0,content.length());
+                                            //content.substring(0,content.length());
+                                            //content = "123";
 
 
                                             //从全局池中返回一个message实例，避免多次创建message（如new Message）
                                             Message msg =Message.obtain();
-                                            msg.obj = content;
+                                            msg.obj = (String)content;
                                             //msg.
-                                            System.out.println(msg.obj);
+                                            System.out.println(msg.obj+"111");
                                             handler.sendMessage(msg);
                                         }
                                     }
@@ -183,7 +185,7 @@ public class Chat extends AppCompatActivity {
 
     //重写run方法,在该方法中输入流的读取
     //@Override
-    public void run() {
+    /*public void run() {
         try {
             while (true) {
                 if (socket.isConnected()) {
@@ -199,7 +201,7 @@ public class Chat extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void sendMsg(){
         String msg;
@@ -223,7 +225,7 @@ public class Chat extends AppCompatActivity {
         mAdapter.add(new Data(R.mipmap.ic_launcher,"新消息"));
     }*/
     public void clickUpdateLeft(View v,String receive){
-        mAdapter.add(new Data(R.mipmap.ic_launcher,receive,0),0);
+        mAdapter.add(new Data(R.drawable.bot_head,receive,0),0);
     }
 
     public void clickUpdateRight(View v,String send){

@@ -8,7 +8,7 @@
         android:id="@+id/imageView1"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/bot_head" />
 
     <TextView
         android:id="@+id/tv_name"
