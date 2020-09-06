@@ -56,7 +56,11 @@ public class Chat extends AppCompatActivity {
                 //System.out.println(sb.toString()+"kkk");
                 System.out.println(msg.obj.toString()+"sss");
                 //System.out.println(msg.obj);
-                clickUpdateLeft(findViewById(R.id.list_one),msg.obj.toString());//刷新界面，
+                if(msg.obj.toString()!=null){
+                    clickUpdateLeft(findViewById(R.id.list_one),msg.obj.toString());//刷新界面，
+                }
+                else System.out.println(msg.obj.toString()+"aaa");
+
             //}
         }
 
